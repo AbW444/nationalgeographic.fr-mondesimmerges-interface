@@ -1,0 +1,63 @@
+{
+  "name": "mondes-immerges",
+  "version": "1.0.0",
+  "description": "Expérience immersive sur les océans par National Geographic",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:github": "vite build --base=/nationalgeographic.fr-mondesimmerges-  interface/",
+    "build:safe": "node build.js",
+    "preview": "vite preview",
+    "deploy": "npm run build:safe && gh-pages -d dist -r https://github.com/AbW444/page-interface-immersive.git",
+    "deploy:quick": "npm run build:github && gh-pages -d dist",
+    "predeploy": "npm run build:safe",
+    "clean": "rimraf dist",
+    "check": "node -e \"console.log('🔍 Vérification des fichiers...'); import('./build.js').then(m => m.buildWithChecks).catch(console.error)\"",
+    "serve": "npx serve dist",
+    "analyze": "npx vite-bundle-analyzer dist",
+    "lint:check": "echo '⚠️  ESLint non configuré - Ajouter eslint si nécessaire'",
+    "test": "echo '⚠️  Tests non configurés - Ajouter vitest si nécessaire'"
+  },
+  "keywords": [
+    "three.js",
+    "gsap",
+    "webgl",
+    "ocean",
+    "interactive",
+    "3d",
+    "immersive",
+    "national-geographic",
+    "marine",
+    "education"
+  ],
+  "author": "National Geographic",
+  "license": "MIT",
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "ldrs": "^1.1.7",
+    "three": "^0.163.0"
+  },
+  "devDependencies": {
+    "vite": "^5.1.4",
+    "gh-pages": "^6.1.1",
+    "rimraf": "^5.0.5"
+  },
+  "homepage": "https://AbW444.github.io/nationalgeographic.fr-mondesimmerges-interface",
+"repository": {
+  "url": "https://github.com/AbW444/nationalgeographic.fr-mondesimmerges-interface.git"
+},
+  "bugs": {
+    "url": "https://github.com/AbW444/page-interface-immersive/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
