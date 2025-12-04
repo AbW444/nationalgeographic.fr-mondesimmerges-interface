@@ -1,14 +1,18 @@
 // Configuration de Vite pour Mondes Immergés - GitHub Pages - VERSION OPTIMISÉE WEBGL
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   // Répertoire racine du projet
   root: './',
-  
+
   // IMPORTANT: Pour GitHub Pages - Remplacer par le nom exact de votre repo
-  base: process.env.NODE_ENV === 'production' 
-    ? '/page-interface-immersive/' 
+  base: process.env.NODE_ENV === 'production'
+    ? '/nationalgeographic.fr-mondesimmerges-interface/'
     : '/',
   
   // Configuration du serveur de développement
@@ -32,39 +36,11 @@ export default defineConfig({
     
     // NOUVEAU: Optimisations spécifiques pour WebGL et Three.js
     target: 'es2018', // Compatibilité élargie tout en gardant les performances
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        // Éviter la minification aggressive qui peut casser les shaders
-        inline: false,
-        join_vars: false,
-        sequences: false, // Important pour les shaders
-        drop_console: true, // Supprimer les console.log en production
-        drop_debugger: true
-      },
-      mangle: {
-        // Préserver les noms de propriétés Three.js critiques
-        reserved: [
-          'THREE', 'scene', 'camera', 'renderer', 'uniforms', 'attributes',
-          'vertexShader', 'fragmentShader', 'material', 'geometry', 'mesh',
-          'texture', 'WebGLRenderer', 'PerspectiveCamera', 'Scene'
-        ],
-        // Ne pas minifier les propriétés des objets shader
-        properties: false
-      },
-      format: {
-        // Préserver les commentaires shader si présents
-        comments: function(node, comment) {
-          return comment.value.includes('shader') || comment.value.includes('precision');
-        }
-      }
-    },
+    minify: 'esbuild', // Utiliser esbuild au lieu de terser pour plus de simplicité
     
     // Options de rollup pour optimiser le bundling
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html')
-      },
+      input: resolve(__dirname, 'index.html'),
       
       // Séparer les gros modules en chunks séparés pour améliorer le cache
       output: {

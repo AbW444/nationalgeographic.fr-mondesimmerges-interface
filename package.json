@@ -39,14 +39,15 @@
     "three": "^0.163.0"
   },
   "devDependencies": {
-    "vite": "^5.1.4",
     "gh-pages": "^6.1.1",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "terser": "^5.44.1",
+    "vite": "^5.1.4"
   },
   "homepage": "https://AbW444.github.io/nationalgeographic.fr-mondesimmerges-interface",
-"repository": {
-  "url": "https://github.com/AbW444/nationalgeographic.fr-mondesimmerges-interface.git"
-},
+  "repository": {
+    "url": "https://github.com/AbW444/nationalgeographic.fr-mondesimmerges-interface.git"
+  },
   "bugs": {
     "url": "https://github.com/AbW444/page-interface-immersive/issues"
   },
